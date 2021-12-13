@@ -6,8 +6,6 @@ pub fn expected_minutes_in_oven() -> i32 {
     40
 }
 
-
-
 pub fn remaining_minutes_in_oven(actual_minutes_in_oven: i32) -> i32 {
     let total_time: i32 = 40;
     let remaining_minutes = expected_minutes_in_oven() - actual_minutes_in_oven;
