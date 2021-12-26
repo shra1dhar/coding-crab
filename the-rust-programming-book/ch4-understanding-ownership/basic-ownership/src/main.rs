@@ -4,7 +4,7 @@
 
 fn main() {
     let s: String = String::from("What up?");
-    takes_ownership(s);
+    takes_ownership(&s);
     println!("{}", s);
 
     let x: i32 = 23;
@@ -16,6 +16,6 @@ fn makes_copy(num: i32) {
     println!("{}", num)
 }
 
-fn takes_ownership(s: String) {
+fn takes_ownership(s: &String) {
     println!("{}", s)
 }
