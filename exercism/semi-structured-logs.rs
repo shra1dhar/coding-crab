@@ -13,7 +13,7 @@ pub fn log(level: LogLevel, message: &str) -> String {
     match level {
         LogLevel::Info => info(message),
         LogLevel::Warning => warn(message),
-        LogLevel::Error => error(message)
+        LogLevel::Error => error(message),
     }
 }
 

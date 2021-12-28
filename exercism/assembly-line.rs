@@ -10,7 +10,7 @@ pub fn production_rate_per_hour(speed: u8) -> f64 {
         1..=4 => ideal_rate,
         5..=8 => 0.9 * ideal_rate,
         9..=10 => 0.77 * ideal_rate,
-        _ => ideal_rate
+        _ => ideal_rate,
     }
 }
 

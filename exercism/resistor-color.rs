@@ -3,16 +3,16 @@ use int_enum::{IntEnum, IntEnumError};
 
 #[derive(Debug, PartialEq)]
 pub enum ResistorColor {
-    Black=0,
-    Blue=1,
-    Brown=2,
-    Green=3,
-    Grey=4,
-    Orange=5,
-    Red=6,
-    Violet=8,
-    White=9,
-    Yellow=10,
+    Black = 0,
+    Blue = 1,
+    Brown = 2,
+    Green = 3,
+    Grey = 4,
+    Orange = 5,
+    Red = 6,
+    Violet = 8,
+    White = 9,
+    Yellow = 10,
 }
 
 pub fn color_to_value(_color: ResistorColor) -> usize {
