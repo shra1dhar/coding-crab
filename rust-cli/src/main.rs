@@ -10,6 +10,8 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
+use indicatif::ProgressBar;
+
 fn main() {
     println!("Hello, world!");
 
@@ -23,7 +25,7 @@ fn main() {
         }
     }
 
-    let result = std::fs::read_to_string("test.txt");
+    let result = std::fs::read_to_string("src/test.txt");
     let content = match result {
         Ok(content) => content,
         Err(error) => {
@@ -31,4 +33,16 @@ fn main() {
         }
     };
     println!("file content: {}", content);
+
+    let pb = ProgressBar::new(100);
+    for i in 0..100 {
+        mimic_intensive_task();
+        pb.println(format!("[+] finished #{}", i));
+        pb.inc(1);
+    }
+    pb.finish_with_message("done");
+}
+
+fn mimic_intensive_task() {
+    for i in 0..1000 {}
 }
