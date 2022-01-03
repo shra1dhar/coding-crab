@@ -1,4 +1,6 @@
 #![allow(unused)]
+use log::info;
+
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -13,7 +15,8 @@ struct Cli {
 use indicatif::ProgressBar;
 
 fn main() {
-    println!("Hello, world!");
+    env_logger::init();
+    info!("starting up");
 
     let args = Cli::from_args();
 
