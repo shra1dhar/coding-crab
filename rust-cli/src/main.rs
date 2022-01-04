@@ -22,11 +22,7 @@ fn main() {
 
     let content = std::fs::read_to_string(&args.path).expect("could not read file");
 
-    for line in content.lines() {
-        if line.contains(&args.pattern) {
-            println!("{}", line);
-        }
-    }
+    find_matches(&content, &args.pattern, &mut std::io::stdout());
 
     let result = std::fs::read_to_string("src/test.txt");
     let content = match result {
@@ -46,6 +42,21 @@ fn main() {
     pb.finish_with_message("done");
 }
 
+fn find_matches(content: &str, pattern: &str, mut writer: impl std::io::Write) {
+    for line in content.lines() {
+        if line.contains(pattern) {
+            writeln!(writer, "{}", line);
+        }
+    }
+}
+
 fn mimic_intensive_task() {
     for i in 0..1000 {}
+}
+
+#[test]
+fn find_a_match() {
+    let mut result = Vec::new();
+    find_matches("lorem ipsum\ndolor sit amet", "lorem", &mut result);
+    assert_eq!(result, b"lorem ipsum\n");
 }
