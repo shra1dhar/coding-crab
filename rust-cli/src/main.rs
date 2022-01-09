@@ -1,6 +1,6 @@
 #![allow(unused)]
 use log::info;
-
+use std::{thread, time::Duration};
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -40,6 +40,15 @@ fn main() {
         pb.inc(1);
     }
     pb.finish_with_message("done");
+
+    ctrlc::set_handler(move || {
+        println!("received Ctrl+C!");
+    })
+    .expect("Error setting Ctrl-C handler");
+
+    // Following code does the actual work, and can be interrupted by pressing
+    // Ctrl-C. As an example: Let's wait a few seconds.
+    thread::sleep(Duration::from_secs(5));
 }
 
 fn find_matches(content: &str, pattern: &str, mut writer: impl std::io::Write) {
