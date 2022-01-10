@@ -12,6 +12,12 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
+#[derive(Serialize, Deserialize)]
+struct MyConfig {
+    version: u8,
+    api_key: String,
+}
+
 use indicatif::ProgressBar;
 
 fn main() {
@@ -40,6 +46,10 @@ fn main() {
         pb.inc(1);
     }
     pb.finish_with_message("done");
+
+    let cfg: MyConfig = confy::load("my_app")?;
+    println!("{:#?}", cfg);
+    Ok(())
 
     ctrlc::set_handler(move || {
         println!("received Ctrl+C!");
